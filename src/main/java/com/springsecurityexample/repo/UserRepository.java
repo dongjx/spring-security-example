@@ -1,0 +1,9 @@
+package com.springsecurityexample.repo;
+
+import com.springsecurityexample.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    User findByUsername(String username);
+}
