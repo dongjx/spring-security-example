@@ -1,6 +1,8 @@
 package com.springsecurityexample.api;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,12 +12,14 @@ public class HomeController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/home")
     public String index() {
-        return "123";
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return "hello, user " + user.getUsername();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admins")
+    @GetMapping("/admin")
     public String admin() {
-        return "123";
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return "hello, admin"+ user.getUsername();
     }
 }

@@ -14,3 +14,6 @@ spring:
 
 flyway:
   enabled: true
+app:
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 20000
