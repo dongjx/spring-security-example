@@ -28,7 +28,7 @@ public class User implements UserDetails, Serializable {
     @JoinTable(name = "t_user_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-    private List<Authority> authorities;
+    private Collection<Authority> authorities;
 
 
     public Long getId() {
@@ -40,11 +40,11 @@ public class User implements UserDetails, Serializable {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<Authority> getAuthorities() {
         return this.authorities;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
+    public void setAuthorities(Collection<Authority> authorities) {
         this.authorities = authorities;
     }
 
